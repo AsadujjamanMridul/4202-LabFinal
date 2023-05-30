@@ -7,7 +7,7 @@ _For Template 1 (Object, Shader, Texture, Transformation)..._
 ```sh
 make temp1
 ```
-_For Template 1 (Object, Shader, Texture, Transformation)..._
+_For Template 2 (Camera, Lighting)..._
 ```sh
 make temp2
 ```
