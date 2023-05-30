@@ -1,0 +1,65 @@
+Fixed Custom Color:
+====================
+int vertexColorLocation = glGetUniformLocation(shaderProgram, "customColor");
+glUniform3f(vertexColorLocation, 1.0f, 0.0f, 0.0f);
+
+
+
+Alternating Color:
+==================
+float colorValue = static_cast<float>(sin(glfwGetTime()) / 2.0 + 0.5);
+
+int vertexColorLocation = glGetUniformLocation(shaderProgram, "customColor");
+glUniform3f(vertexColorLocation, 0.0f, 0.0f, colorValue);				// Blue  to Black to Blue
+
+
+===================
+glUniform3f(vertexColorLocation, cos((float)glfwGetTime()), sin((float)glfwGetTime()), sin((float)glfwGetTime()) * 0.2);	// Diff to Diff
+
+
+
+
+
+Example:
+========
+if (i == 0)
+{
+    // ================= COLOR ===============
+    float colorValue = static_cast<float>(sin(glfwGetTime()) / 2.0 + 0.5);
+
+    int vertexColorLocation = glGetUniformLocation(shaderProgram, "customColor");
+    glUniform3f(vertexColorLocation, 0.0f, 0.0f, colorValue); // Blue to Black to Blue
+
+    // ================ TRANSFORMATION ================
+    model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+    model = glm::translate(model, glm::vec3(1.0f, 0.5f, 0.8f));
+
+    // ================= DRAW ===================
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, &model[0][0]);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+else if (i == 1)
+{
+    // ================= COLOR ===============
+    int vertexColorLocation = glGetUniformLocation(shaderProgram, "customColor");
+    glUniform3f(vertexColorLocation, 1.0f, 0.0f, 0.0f);
+
+    // ================ TRANSFORMATION ================
+
+    // ================= DRAW ===================
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, &model[0][0]);
+    glDrawArrays(GL_TRIANGLES, 3, 6);
+}
+else
+{
+    // ================= COLOR ===============
+    int vertexColorLocation = glGetUniformLocation(shaderProgram, "customColor");
+    glUniform3f(vertexColorLocation, 0.0f, 0.5f, 0.5f);
+
+    // ================ TRANSFORMATION ================
+    model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+
+    // ================= DRAW ===================
+    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, &model[0][0]);
+    glDrawArrays(GL_TRIANGLES, 9, 36);
+}

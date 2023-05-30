@@ -1,0 +1,84 @@
+Time to time:
+=============
+
+	Translate:
+	==========
+	model = glm::translate(model, glm::vec3(sin((float)glfwGetTime()), 0.0f, 0.0f));
+
+	Scale:
+	======
+	scaleAmount = (sin((float)glfwGetTime())/2.0 +0.5f);
+	model = glm::scale(model, glm::vec3(scaleAmount));
+
+	Rotation:
+	=========
+	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f));
+
+
+
+Keypad Control:
+===============
+
+	Translate:
+	==========
+	model = glm::translate(model, glm::vec3(xOffset, yOffset, 0.0f));
+
+	Scale:
+	======
+	model = glm::scale(model, glm::vec3(scaleAmount));
+
+	Rotation:
+	=========
+	model = glm::rotate(model, glm::radians(rotationAmount), glm::vec3(0.0f, 0.0f, 1.0f));
+
+
+
+
+
+Keypad Example:
+===============
+
+if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    glfwSetWindowShouldClose(window, true);
+if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+{
+    // Move Upward
+    yOffset += 0.001f;
+}
+if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+{
+    // Move Downward
+    yOffset -= 0.001f;
+}
+if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+{
+    // Move Right
+    xOffset += 0.001f;
+}
+if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+{
+    // Move Left
+    xOffset -= 0.001f;
+}
+if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+{
+    // zoom in
+    scaleAmount += 0.001f;
+}
+if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+{
+    // zoom in
+    scaleAmount -= 0.001f;
+}
+if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+{
+    // rotation
+    rotationAmount += 0.1f;
+}
+
+
+
+
+
+
+glm::mat4 view = glm::lookAt(glm::vec3(camX, 0.2f, -0.3f), glm::vec3(0.0f, 0.0f, 2.0f), cameraUp);;
